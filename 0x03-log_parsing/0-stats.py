@@ -1,16 +1,17 @@
 #!/usr/bin/python3
 """
-The log Parsing task - printing as per requiremens
+Log Parsing: Reads stdin line by line and computes metrics.
 """
 from sys import stdin
 
 
 def print_stats(total_size, status_codes):
-    """ This prints"""
-    print("File size: " + str(total_size))
+    """Prints file size and status code counts."""
+    print(f"File size: {total_size}")
     for code in sorted(status_codes.keys()):
-        if status_codes[code] > 0:
-            print(code + ": " + str(status_codes[code]))
+        count = status_codes[code]
+        if count > 0:
+            print(f"{code}: {count}")
 
 
 line_num = 0
@@ -30,9 +31,9 @@ try:
         if len(split_line) > 2 and split_line[-2].isnumeric():
             status_code = split_line[-2]
         else:
-            status_code = 0
+            status_code = "0"
 
-        if status_code in status_codes.keys():
+        if status_code in status_codes:
             status_codes[status_code] += 1
 
         if line_num % 10 == 0:
@@ -40,5 +41,6 @@ try:
 
     print_stats(total_size, status_codes)
 
-except (KeyboardInterrupt):
+except KeyboardInterrupt:
+    print_stats(total_size, status_codes)
     raise
