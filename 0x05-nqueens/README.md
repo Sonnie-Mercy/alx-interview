@@ -1,0 +1,1 @@
+n queens interview question
