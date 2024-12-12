@@ -9,12 +9,11 @@ def isWinner(x, nums):
                      in the range for that round.
 
     Returns:
-        str: Name of the player that won the most rounds, or None if it's a tie.
+        str: Name of the player that won the most rounds, or None for tie.
     """
     if x < 1 or not nums:
         return None
 
-    # Precompute primes using the Sieve of Eratosthenes up to the largest number in nums
     max_num = max(nums)
     is_prime = [True] * (max_num + 1)
     is_prime[0] = is_prime[1] = False  # 0 and 1 are not primes
